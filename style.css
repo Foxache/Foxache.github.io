@@ -1,1 +1,40 @@
+html {
+	background-color: rgb(0, 0, 6);
+	font-family: Comic Sans MS;
+	color: white;
+	text-align: center;	
+}
+a {
+  color: hotpink;	
+  text-decoration:none;
+  font-weight: bold;
+}
+div {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+footer {
+	padding-top: 225px;
+}
 
+hr.dashed {
+ padding: 10px;	
+ border-top: 3px dashed;
+ border-bottom: none;
+ color: hotpink;
+}
+
+hr.dotted {
+ border-top: 1px dotted;
+ border-bottom: none;
+}
+
+hr.double {
+ border-top: 3px double;
+ border-bottom: none;
+}
+
+.textblock {
+  display: inline-block;
+  vertical-align: top;
+}

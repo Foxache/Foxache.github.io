@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #blog-list {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .blog-item {
+            padding: 10px;
+            border-bottom: 1px dotted #ccc;
+            cursor: pointer;
+        }
+
+        .blog-item:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        #reader {
+            margin-top: 40px;
+            white-space: pre-wrap;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            border: 1px solid #444;
+        }
+
+        #controls {
+            margin-top: 20px;
+        }
+
+        input, select {
+            padding: 6px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Yappatron 9000</h1>
+
+    <div id="controls">
+        <input type="text" id="search" placeholder="Search blogs…">
+        <select id="sort">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+        </select>
+    </div>
+
+    <div id="blog-list"></div>
+
+    <div id="reader"></div>
+
+    <script>
+        const BLOG_FOLDER = "blogs/";
+        const BLOG_JSON = BLOG_FOLDER + "blogs.json";
+
+        // Load blog list from blogs.json
+        async function getBlogFiles() {
+            const response = await fetch(BLOG_JSON);
+            return await response.json(); // returns ["23-11-2024_blog.txt", ...]
+        }
+
+        function extractDate(filename) {
+            // match DD-MM-YYYY
+            const match = filename.match(/(\d{2})-(\d{2})-(\d{4})/);
+
+            if (!match) return new Date(0);
+
+            const [_, dd, mm, yyyy] = match;
+
+            // Convert to YYYY-MM-DD for JS Date()
+            return new Date(`${yyyy}-${mm}-${dd}`);
+        }
+
+        async function loadBlogs() {
+            let files = await getBlogFiles();
+            files = files.map(f => ({
+                name: f,
+                date: extractDate(f)
+            }));
+
+            renderList(files);
+
+            document.getElementById("search").addEventListener("input", () => renderList(files));
+            document.getElementById("sort").addEventListener("change", () => renderList(files));
+        }
+
+        function renderList(files) {
+            const list = document.getElementById("blog-list");
+            list.innerHTML = "";
+
+            const searchValue = document.getElementById("search").value.toLowerCase();
+            const sortOrder = document.getElementById("sort").value;
+
+            let filtered = files.filter(f =>
+                f.name.toLowerCase().includes(searchValue)
+            );
+
+            filtered.sort((a, b) =>
+                sortOrder === "newest"
+                    ? b.date - a.date
+                    : a.date - b.date
+            );
+
+            filtered.forEach(file => {
+                const div = document.createElement("div");
+                div.className = "blog-item";
+                div.textContent = file.name;
+                div.onclick = () => loadBlog(file.name);
+                list.appendChild(div);
+            });
+        }
+
+        async function loadBlog(filename) {
+            const response = await fetch(BLOG_FOLDER + filename);
+            const text = await response.text();
+            document.getElementById("reader").textContent = text;
+        }
+
+        loadBlogs();
+    </script>
+
+</body>
+
+<footer>
+	<h3><a href="index.html" title="Return back to main page">Main page</a></h3>
+</footer>
+</html>
