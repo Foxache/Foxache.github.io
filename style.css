@@ -7,6 +7,10 @@ html {
     padding: 0;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 a {
   color: hotpink;	
   text-decoration:none;
@@ -42,3 +46,4 @@ hr.double {
   vertical-align: top;
 
 }
+
