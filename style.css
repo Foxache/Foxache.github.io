@@ -3,7 +3,10 @@ html {
 	font-family: Comic Sans MS;
 	color: white;
 	text-align: center;	
+	margin: 0;
+    padding: 0;
 }
+
 a {
   color: hotpink;	
   text-decoration:none;
@@ -37,4 +40,5 @@ hr.double {
 .textblock {
   display: inline-block;
   vertical-align: top;
+
 }
