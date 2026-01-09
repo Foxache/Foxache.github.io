@@ -7,6 +7,16 @@ html {
     padding: 0;
 }
 
+.hero {
+    min-height: 100vh;
+    background: red;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 body {
     overflow-x: hidden;
 }
@@ -46,4 +56,5 @@ hr.double {
   vertical-align: top;
 
 }
+
 
