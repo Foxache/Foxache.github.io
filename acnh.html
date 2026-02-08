@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ash's Bakery and Cafe</title>
+
+<style>
+@font-face {
+    font-family: "TitleFont";
+    src: url("title-font.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "BodyFont";
+    src: url("body-font.otf") format("opentype");
+}
+
+body {
+    margin: 0;
+    padding: 40px 20px;
+    background: #bfe7d1;
+    font-family: "BodyFont", sans-serif;
+    color: #2f3d35;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+}
+
+.bubble {
+    background: #e8f7ee;
+    border-radius: 30px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+}
+
+.title {
+    text-align: center;
+    font-family: "TitleFont", cursive;
+    font-size: 2.5rem;
+    background: #ffe9b6;
+}
+
+.note {
+    font-size: 1rem;
+    background: #fff6da;
+    text-align: center;
+}
+
+.menu-item {
+    padding: 12px 0;
+}
+
+.menu-item:not(:last-child) {
+    border-bottom: 2px solid #d7eadf;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.item-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.item-name {    
+    font-size: 1.1rem;
+}
+
+.out-of-stock {
+    opacity: 0.45;
+    filter: grayscale(60%);
+}
+
+.out-of-stock .price::after {
+    content: " • Out of stock";
+    color: #b54a4a;
+    font-weight: bold;
+}
+
+
+.price {
+    color: #8b5a2b;
+    font-size: 1.05rem;
+}
+
+.hide-out-of-stock .out-of-stock {
+    display: none;
+}
+
+.filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.filter-toggle input {
+    transform: scale(1.2);
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="bubble title">
+        Ash's Bakery and Cafe!
+    </div>
+
+    <div class="bubble note">
+        You can pay the listed bell price,
+        <br>provide a new DIY recipe I do not have,
+        <br>or trade ingredients for the dish!
+    </div>
+
+    <div class="bubble note"> 
+        For +50% total, you can order in advance and i will try my best to make the dish for you.
+        <br>To do this, please contact me on <a href="https://discordapp.com/users/650401006630469644" >discord</a>!<br>
+    </div>
+
+    <div class="bubble note"> 
+        If you would like to order anything, ping me on discord!
+    </div>
+
+
+    <div class="bubble">
+        <label class="filter-toggle">
+            <input type="checkbox" id="stockFilter">
+            <p style="text-align: center;">Hide out-of-stock items</p>
+        </label>
+    </div>
+    
+    <!-- Menu items are listed in order of when they were added to the menu, with the most recent additions at the bottom. -->
+    <div class="bubble">
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/ajifry.png" class="item-icon">
+                    <span class="item-name">Aaji Fry</span>
+                </div>
+                <span class="price">500 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/anchoasalajilo.png" class="item-icon">
+                    <span class="item-name">Anchoas al ajilo</span>
+                </div>
+                <span class="price">500 bells</span>
+            </div>
+        </div>
+    
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/carrotpotage.png" class="item-icon">
+                    <span class="item-name">Carrot Potage</span>
+                </div>
+                <span class="price">1,300 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/coffee.png" class="item-icon">
+                    <span class="item-name">Coffee</span>
+                </div>
+                <span class="price">300 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/GrilledSeaBassWithHerbs.png" class="item-icon">
+                    <span class="item-name">Grilled Sea Bass with Herbs</span>
+                </div>
+                <span class="price">500 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/KareiNoNitsuke.png" class="item-icon">
+                    <span class="item-name">Karei No Nitsuke</span>
+                </div>
+                <span class="price">300 bells</span>
+            </div>
+        </div>
+    
+        <div class="menu-item">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/PearSmoothie.png" class="item-icon">
+                    <span class="item-name">Pear Smoothie</span>
+                </div>
+                <span class="price">100 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/pancakes.png" class="item-icon">
+                    <span class="item-name">Pancakes</span>
+                </div>
+                <span class="price">1,000 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/pumpkinbs.png" class="item-icon">
+                    <span class="item-name">Pumpkin Bagel Sandwhich</span>
+                </div>
+                <span class="price">2,000 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/PesceAll'acquaPazza.png" class="item-icon">
+                    <span class="item-name">Pesce All'acqua Pazza</span>
+                </div>
+                <span class="price">5,000 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/SardinesInOil.png" class="item-icon">
+                    <span class="item-name">Sardines in Oil</span>
+                </div>
+                <span class="price">100 bells</span>
+            </div>
+        </div> 
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/SautéedOliveFlounder.png" class="item-icon">
+                    <span class="item-name">Sautéed Olive Flounder</span>
+                </div>
+                <span class="price">1,000 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/SeaBassPie.png" class="item-icon">
+                    <span class="item-name">Sea Bass Pie</span>
+                </div>
+                <span class="price">1,200 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/SeaBassPie.png" class="item-icon">
+                    <span class="item-name">Sea Bass Pie</span>
+                </div>
+                <span class="price">1,200 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/SquidInkCurry.png" class="item-icon">
+                    <span class="item-name">Squid-Ink Curry</span>
+                </div>
+                <span class="price">2,500 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/squidinkspaghetti.png" class="item-icon">
+                    <span class="item-name">Squid-Ink Spaghetti</span>
+                </div>
+                <span class="price">2,500 bells</span>
+            </div>
+        </div>
+
+        <div class="menu-item out-of-stock">
+            <div class="item-row">
+                <div class="item-left">
+                    <img src="images/TomatoCurry.png" class="item-icon">
+                    <span class="item-name">Tomato Curry</span>
+                </div>
+                <span class="price">2,000 bells</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+<script>
+const checkbox = document.getElementById("stockFilter");
+const body = document.body;
+
+checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+        body.classList.add("hide-out-of-stock");
+    } else {
+        body.classList.remove("hide-out-of-stock");
+    }
+});
+</script>
+
+</html>
